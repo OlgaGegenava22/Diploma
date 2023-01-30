@@ -301,4 +301,14 @@ public class CardPaymentTest {
         cardPaymentPage.ownerErrorCaption("Поле обязательно для заполнения");
         cardPaymentPage.cvvErrorCaption("Поле обязательно для заполнения");
     }
+
+    @Test
+    @DisplayName("Оставить пустое поле Владелец")
+    void doNotEnterAnythingStringsOwner() {
+        var homePage = new HomePage();
+        var cardPaymentPage = homePage.cardPayment();
+        DataHelper.CardInfo cardInfo = DataHelper.getInvalidDataWithEmptyStringsOwner();
+        cardPaymentPage.fillCardInfo(cardInfo);
+        cardPaymentPage.ownerErrorCaption("Поле обязательно для заполнения");
+    }
 }

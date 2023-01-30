@@ -365,6 +365,15 @@ public class DataHelper {
         );
     }
 
+    public static CardInfo getInvalidDataWithEmptyStringsOwner() {
+        return new CardInfo(getEmptyString(),
+                getPastMonth(2),
+                getFutureYear(1),
+                getEmptyString(),
+                getTwoNumbers()
+        );
+    }
+
     public static CardInfo getDataWithRandomCardNumber() {
         return new CardInfo(getRandomCardNumber(),
                 getPastMonth(2),
@@ -374,7 +383,6 @@ public class DataHelper {
         );
     }
 }
-
 
 
 
