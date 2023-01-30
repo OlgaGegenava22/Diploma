@@ -257,6 +257,15 @@ public class DataHelper {
         );
     }
 
+    public static CardInfo getInvalidDataWithNullYear() {
+        return new CardInfo(getApprovedCardNumber(),
+                getPastMonth(2),
+                getThreeNumbersYear(),
+                getValidName(),
+                getThreeNumbers()
+        );
+    }
+
     public static CardInfo getInvalidDataWithLetterInMonth() {
         return new CardInfo(getApprovedCardNumber(),
                 getLetterInsteadOfNumber(),
