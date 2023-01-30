@@ -178,6 +178,17 @@ public class CreditPaymentTest {
     }
 
     @Test
+    @DisplayName("Ввод невалидной даты. Ввод года нулем")
+    void enterNullYear() {
+        var homePage = new HomePage();
+        var cardPaymentPage = homePage.cardPayment();
+        DataHelper.CardInfo cardInfo = DataHelper.getInvalidDataWithNullYear();
+        cardPaymentPage.fillCardInfo(cardInfo);
+        cardPaymentPage.yearErrorCaption("Неверный формат");
+    }
+
+
+    @Test
     @DisplayName("Ввод невалидной даты. Ввод буквы в поле Месяц")
     void enterLetterInMonth() {
         var homePage = new HomePage();

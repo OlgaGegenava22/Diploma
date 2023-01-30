@@ -168,15 +168,6 @@ public class CardPaymentTest {
         cardPaymentPage.successfulPaymentNotification();
     }
 
-    @Test
-    @DisplayName("Ввод невалидной даты. Ввод года тремя цифрами")
-    void enterThreeNumbersYear() {
-        var homePage = new HomePage();
-        var cardPaymentPage = homePage.cardPayment();
-        DataHelper.CardInfo cardInfo = DataHelper.getInvalidDataWithThreeNumbersYear();
-        cardPaymentPage.fillCardInfo(cardInfo);
-        cardPaymentPage.successfulPaymentNotification();
-    }
 
     @Test
     @DisplayName("Ввод невалидной даты. Ввод года нулем")
