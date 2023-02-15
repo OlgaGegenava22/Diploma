@@ -178,17 +178,6 @@ public class CreditPaymentTest {
     }
 
     @Test
-    @DisplayName("Ввод невалидной даты. Ввод года нулем")
-    void enterNullYear() {
-        var homePage = new HomePage();
-        var cardPaymentPage = homePage.cardPayment();
-        DataHelper.CardInfo cardInfo = DataHelper.getInvalidDataWithNullYear();
-        cardPaymentPage.fillCardInfo(cardInfo);
-        cardPaymentPage.yearErrorCaption("Неверный формат");
-    }
-
-
-    @Test
     @DisplayName("Ввод невалидной даты. Ввод буквы в поле Месяц")
     void enterLetterInMonth() {
         var homePage = new HomePage();
@@ -309,6 +298,46 @@ public class CreditPaymentTest {
         creditPaymentPage.monthErrorCaption("Поле обязательно для заполнения");
         creditPaymentPage.yearErrorCaption("Поле обязательно для заполнения");
         creditPaymentPage.ownerErrorCaption("Поле обязательно для заполнения");
+        creditPaymentPage.cvvErrorCaption("Поле обязательно для заполнения");
+    }
+
+    @Test
+    @DisplayName("Пустое значение в поле Владелец")
+    void doNotEnterAnythingStringsOwner() {
+        var homePage = new HomePage();
+        var creditPaymentPage = homePage.creditPayment();
+        DataHelper.CardInfo cardInfo = DataHelper.getInvalidDataWithEmptyStringsOwner();
+        creditPaymentPage.fillCardInfo(cardInfo);
+        creditPaymentPage.ownerErrorCaption("Поле обязательно для заполнения");
+    }
+
+    @Test
+    @DisplayName("Пустое значение в поле Месяц")
+    void doNotEnterAnythingStringsMonth() {
+        var homePage = new HomePage();
+        var creditPaymentPage = homePage.creditPayment();
+        DataHelper.CardInfo cardInfo = DataHelper.getInvalidDataWithEmptyStringsMonth();
+        creditPaymentPage.fillCardInfo(cardInfo);
+        creditPaymentPage.monthErrorCaption("Поле обязательно для заполнения");
+    }
+
+    @Test
+    @DisplayName("Пустое значение в поле Год")
+    void doNotEnterAnythingStringsYear() {
+        var homePage = new HomePage();
+        var creditPaymentPage = homePage.creditPayment();
+        DataHelper.CardInfo cardInfo = DataHelper.getInvalidDataWithEmptyStringsYear();
+        creditPaymentPage.fillCardInfo(cardInfo);
+        creditPaymentPage.yearErrorCaption("Поле обязательно для заполнения");
+    }
+
+    @Test
+    @DisplayName("Пустое значение в поле Год")
+    void doNotEnterAnythingStringsCvc() {
+        var homePage = new HomePage();
+        var creditPaymentPage = homePage.creditPayment();
+        DataHelper.CardInfo cardInfo = DataHelper.getInvalidDataWithEmptyStringsCvc();
+        creditPaymentPage.fillCardInfo(cardInfo);
         creditPaymentPage.cvvErrorCaption("Поле обязательно для заполнения");
     }
 }

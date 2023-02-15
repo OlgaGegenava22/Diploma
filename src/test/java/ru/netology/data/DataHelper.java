@@ -68,11 +68,11 @@ public class DataHelper {
     }
 
     public static String getThreeNumbersMonth() {
-        return faker.numerify("05#");
+        return faker.numerify("10#");
     }
 
     public static String getThreeNumbersYear() {
-        return faker.numerify("26#");
+        return faker.numerify("23#");
     }
 
     public static String getOneNumber() { //для месяца, года, CVV
@@ -122,6 +122,22 @@ public class DataHelper {
     public static String getEmptyString() {
         return ("");
     }
+    public static String getEmptyStringOwner () {
+        return ("4444444444444441,10,26,,123");
+    }
+
+    public static String getEmptyStringYear() {
+        return ("");
+    }
+
+    public static String getEmptyStringMonth() {
+        return ("");
+    }
+
+    public static String getEmptyStringCvc() {
+        return ("");
+    }
+
 
     public static CardInfo getValidDataWithApproveCardNumber1() {
         return new CardInfo(getApprovedCardNumber(),
@@ -257,15 +273,6 @@ public class DataHelper {
         );
     }
 
-    public static CardInfo getInvalidDataWithNullYear() {
-        return new CardInfo(getApprovedCardNumber(),
-                getPastMonth(2),
-                getThreeNumbersYear(),
-                getValidName(),
-                getThreeNumbers()
-        );
-    }
-
     public static CardInfo getInvalidDataWithLetterInMonth() {
         return new CardInfo(getApprovedCardNumber(),
                 getLetterInsteadOfNumber(),
@@ -375,12 +382,39 @@ public class DataHelper {
     }
 
     public static CardInfo getInvalidDataWithEmptyStringsOwner() {
-        return new CardInfo(getEmptyString(),
+        return new CardInfo(faker.business().creditCardNumber(),
                 getPastMonth(2),
                 getFutureYear(1),
-                getEmptyString(),
-                getTwoNumbers()
+                getEmptyStringOwner (),
+                getSymbolInsteadOfNumber()
         );
+    }
+
+    public static CardInfo getInvalidDataWithEmptyStringsMonth() {
+        return new CardInfo(faker.business().creditCardNumber(),
+                getEmptyStringMonth (),
+                getFutureYear(1),
+                getValidName(),
+                getSymbolInsteadOfNumber()
+        );
+    }
+
+        public static CardInfo getInvalidDataWithEmptyStringsYear() {
+            return new CardInfo(faker.business().creditCardNumber(),
+                    getPastMonth(2),
+                    getEmptyStringYear(),
+                    getValidName(),
+                    getSymbolInsteadOfNumber()
+            );
+    }
+
+    public static CardInfo getInvalidDataWithEmptyStringsCvc() {
+        return new CardInfo(faker.business().creditCardNumber(),
+                getPastMonth(2),
+                getFutureYear(1),
+                getValidName(),
+                getEmptyStringCvc()
+            );
     }
 
     public static CardInfo getDataWithRandomCardNumber() {
