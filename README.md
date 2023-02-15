@@ -46,7 +46,7 @@ docker-compose up -d
 
 java -jar artifacts/aqa-shop.jar
 *Дождаться появления строки:
-ru.netology.shop.ShopApplication         : Started ShopApplication in 17.116 seconds (JVM running for 19.968)
+ru.netology.shop.ShopApplication         : Started ShopApplication in 16.682 seconds (JVM running for 19.968)
 
 2.	Для запуска авто-тестов в Terminal Intellij IDEA открыть новую сессию и ввести команду:
 
