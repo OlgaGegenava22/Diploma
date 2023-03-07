@@ -12,8 +12,8 @@ import static java.time.Duration.ofSeconds;
 public class CreditPaymentPage {
 
     private SelenideElement cardNumber = $("[placeholder=\"0000 0000 0000 0000\"]");
-    private SelenideElement month = $("[placeholder=\"05\"]");
-    private SelenideElement year = $("[placeholder=\"26\"]");
+    private SelenideElement month = $("[placeholder=\"08\"]");
+    private SelenideElement year = $("[placeholder=\"22\"]");
     private SelenideElement owner = $x("//*[text()='Владелец']/following-sibling::span/input");
     private SelenideElement cvv = $("[placeholder=\"999\"]");
     private SelenideElement continueButton = $x("//span[text()=\"Продолжить\"]");

@@ -10,11 +10,14 @@
 
 •	Bash
 
+  
 3.	На компьютере пользователя должна быть установлена:
 
 •	Git Bash
 
 •	Intellij IDEA
+
+• Node.js
 
 # Подготовка и запуск
 
@@ -35,65 +38,45 @@ docker-compose up -d
 
     git clone https://github.com/OlgaGegenava22/Diploma.git
     
-6.	Открыть с клонированный проект в Intellij IDEA
+6. Открыть с клонированный проект в Intellij IDEA
+
+7. В терминале в папке gate-simulator запустить симулятор банковских сервисов: npm start
 
 # Для работы с базой данных MySQL
-**Проект пред настроен под работу с базой данных MySQL развернутой по ip-адресу 185.119.57.176.**
 
-**Как изменить ip-адрес описано в разделе "Для работы с базой данных PostgreSQL", для MySQL - делается аналогично.**
+**В новом окне терминала в корне проекта используется приложение под БД MySQL:**
 
 1.	Запустить SUT во вкладке Terminal Intellij IDEA командой:
 
-java -jar artifacts/aqa-shop.jar
-*Дождаться появления строки:
-ru.netology.shop.ShopApplication         : Started ShopApplication in 16.682 seconds (JVM running for 19.968)
+java "-Dspring.datasource.url=jdbc:mysql://localhost:3306/app" -jar artifacts/aqa-shop.jar
 
-2.	Для запуска авто-тестов в Terminal Intellij IDEA открыть новую сессию и ввести команду:
 
-./gradlew clean test allureReport -Dheadless=true
-(В моем терминале запускается вот такой командой: gradlew clean test allureReport -Dheadless=true) где:
+2. Для запуска авто-тестов в Terminal Intellij IDEA открыть новую сессию и ввести команду:
 
-* **allureReport - подготовка данных для отчета Allure;**
-* **-Dheadless=true - запускает авто-тесты в headless-режиме (без открытия браузера).**
+./gradlew clean test "-Ddb.url=jdbc:mysql://localhost:3306/app" "-Ddb.username=app" "-Ddb.password=pass"
+
 
 3. Для просмотра отчета Allure в терминале ввести команду:
 
 ./gradlew allureServe
-(В моем терминале запускается вот такой командой: gradlew allureServe)
+
 
 # Для работы с базой данных PostgreSQL
+1. Запустить приложение под БД PostgresSQL с помощью команды в терминале:
 
-В находящемся в проекте файле build.gradle в разделе test закомментировать строку ниже "//Для работы с базой данных mySQL" и раскомментировать строку ниже "//Для работы с базой данных postgreSQL", выглядеть будет так:
+ 2. Далее во вкладке Terminal Intellij IDEA запустить SUT командой:
 
-   //Для работы с базой данных mySQL (со строки ниже необходимо снять комментарий):
-//systemProperty 'datasource', System.getProperty('datasource', 'jdbc:mysql://185.119.57.164:3306/base_mysql')
-//Для работы с базой данных postgreSQL (со строки ниже необходимо снять комментарий):
-systemProperty 'datasource', System.getProperty('datasource', 'jdbc:postgresql://185.119.57.164:5432/base_postgresql')
-где:
-
-185.119.57.164 - ip-адрес удаленной машины с развернутой PostgreSQL, в случае необходимости заменить на ip-адрес своей удаленной машины с развернутой PostgreSQL.
-
-2. Применить изменения (Ctrl+Shift+O);
-
-3.	Далее во вкладке Terminal Intellij IDEA запустить SUT командой:
-
-    java -jar artifacts/aqa-shop.jar
+   java "-Dspring.datasource.url=jdbc:postgresql://localhost:5432/app" -jar artifacts/aqa-shop.jar
     
-**Дождаться появления строки: ru.netology.shop.ShopApplication  : Started ShopApplication in 17.116 seconds (JVM running for 19.968)**
 
 4.	Для запуска авто-тестов в Terminal Intellij IDEA открыть новую сессию и ввести команду:
 
-./gradlew clean test allureReport -Dheadless=true
-(В моем терминале запускается вот такой командой: gradlew clean test allureReport -Dheadless=true) где:
+./gradlew clean test "-Ddb.url=jdbc:postgresql://localhost:5432/app" "-Ddb.username=app" "-Ddb.password=pass"
 
-* allureReport - подготовка данных для отчета Allure;
-
-* -Dheadless=true - запускает авто-тесты в headless-режиме (без открытия браузера).
 
 5. Для просмотра отчета Allure в терминале ввести команду:
 
 ./gradlew allureServe
-(В моем терминале запускается вот такой командой: gradlew allureServe)
 
 # Закрыть отчёт:
 
