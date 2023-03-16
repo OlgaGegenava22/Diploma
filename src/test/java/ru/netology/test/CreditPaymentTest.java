@@ -332,7 +332,7 @@ public class CreditPaymentTest {
     }
 
     @Test
-    @DisplayName("Пустое значение в поле Год")
+    @DisplayName("Пустое значение в поле CVC/CVV")
     void doNotEnterAnythingStringsCvc() {
         var homePage = new HomePage();
         var creditPaymentPage = homePage.creditPayment();

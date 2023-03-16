@@ -18,18 +18,16 @@ public class SQLTest {
 
     @BeforeEach
     void setUp() {
+        SQLHelper.cleanTables();
         open("http://localhost:8080");
     }
 
-    @AfterAll
-    public static void setDown() {
-        SQLHelper.cleanTables();
-    }
 
     @AfterAll
     static void tearDownAll() {
         SelenideLogger.removeListener("allure");
     }
+
 
     @Test
     @DisplayName("Покупка тура по карте, для которой задан статус APPROVED")
@@ -38,8 +36,10 @@ public class SQLTest {
         var cardPaymentPage = homePage.cardPayment();
         DataHelper.CardInfo cardInfo = DataHelper.getValidDataWithApproveCardNumber1();
         cardPaymentPage.fillCardInfo(cardInfo);
+        cardPaymentPage.successfulPaymentNotification();
         Assertions.assertEquals("APPROVED", SQLHelper.getCardPaymentStatus());
     }
+
 
     @Test
     @DisplayName("Покупка тура по карте, для которой задан статус DECLINED")
@@ -48,6 +48,7 @@ public class SQLTest {
         var cardPaymentPage = homePage.cardPayment();
         DataHelper.CardInfo cardInfo = DataHelper.getValidDataWithDeclinedCardNumber();
         cardPaymentPage.fillCardInfo(cardInfo);
+        cardPaymentPage.successfulPaymentNotification();
         Assertions.assertEquals("DECLINED", SQLHelper.getCardPaymentStatus());
     }
 
@@ -58,6 +59,7 @@ public class SQLTest {
         var cardPaymentPage = homePage.cardPayment();
         DataHelper.CardInfo cardInfo = DataHelper.getDataWithRandomCardNumber();
         cardPaymentPage.fillCardInfo(cardInfo);
+        cardPaymentPage.successfulPaymentNotification();
         Assertions.assertNull(SQLHelper.getCardPaymentStatus());
     }
 
@@ -68,6 +70,7 @@ public class SQLTest {
         var creditPaymentPage = homePage.creditPayment();
         DataHelper.CardInfo cardInfo = DataHelper.getValidDataWithApproveCardNumber1();
         creditPaymentPage.fillCardInfo(cardInfo);
+        creditPaymentPage.successfulPaymentNotification();
         Assertions.assertEquals("APPROVED", SQLHelper.getCreditPaymentStatus());
     }
 
@@ -78,6 +81,7 @@ public class SQLTest {
         var creditPaymentPage = homePage.creditPayment();
         DataHelper.CardInfo cardInfo = DataHelper.getValidDataWithDeclinedCardNumber();
         creditPaymentPage.fillCardInfo(cardInfo);
+        creditPaymentPage.successfulPaymentNotification();
         Assertions.assertEquals("DECLINED", SQLHelper.getCreditPaymentStatus());
     }
 
@@ -88,6 +92,7 @@ public class SQLTest {
         var creditPaymentPage = homePage.creditPayment();
         DataHelper.CardInfo cardInfo = DataHelper.getDataWithRandomCardNumber();
         creditPaymentPage.fillCardInfo(cardInfo);
+        creditPaymentPage.successfulPaymentNotification();
         Assertions.assertNull(SQLHelper.getCreditPaymentStatus());
     }
 }
