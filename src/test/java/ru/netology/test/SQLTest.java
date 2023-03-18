@@ -48,7 +48,6 @@ public class SQLTest {
         var cardPaymentPage = homePage.cardPayment();
         DataHelper.CardInfo cardInfo = DataHelper.getValidDataWithDeclinedCardNumber();
         cardPaymentPage.fillCardInfo(cardInfo);
-        cardPaymentPage.successfulPaymentNotification();
         Assertions.assertEquals("DECLINED", SQLHelper.getCardPaymentStatus());
     }
 
@@ -59,7 +58,6 @@ public class SQLTest {
         var cardPaymentPage = homePage.cardPayment();
         DataHelper.CardInfo cardInfo = DataHelper.getDataWithRandomCardNumber();
         cardPaymentPage.fillCardInfo(cardInfo);
-        cardPaymentPage.successfulPaymentNotification();
         Assertions.assertNull(SQLHelper.getCardPaymentStatus());
     }
 
@@ -81,7 +79,6 @@ public class SQLTest {
         var creditPaymentPage = homePage.creditPayment();
         DataHelper.CardInfo cardInfo = DataHelper.getValidDataWithDeclinedCardNumber();
         creditPaymentPage.fillCardInfo(cardInfo);
-        creditPaymentPage.successfulPaymentNotification();
         Assertions.assertEquals("DECLINED", SQLHelper.getCreditPaymentStatus());
     }
 
@@ -92,7 +89,6 @@ public class SQLTest {
         var creditPaymentPage = homePage.creditPayment();
         DataHelper.CardInfo cardInfo = DataHelper.getDataWithRandomCardNumber();
         creditPaymentPage.fillCardInfo(cardInfo);
-        creditPaymentPage.successfulPaymentNotification();
         Assertions.assertNull(SQLHelper.getCreditPaymentStatus());
     }
 }

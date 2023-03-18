@@ -322,7 +322,7 @@ public class CardPaymentTest {
     }
 
     @Test
-    @DisplayName("Пустое значение в поле Год")
+    @DisplayName("Пустое значение в поле CVC/CVV")
     void doNotEnterAnythingStringsYear() {
         var homePage = new HomePage();
         var cardPaymentPage = homePage.cardPayment();
@@ -332,7 +332,7 @@ public class CardPaymentTest {
     }
 
     @Test
-    @DisplayName("Пустое значение в поле CVC/CVV")
+    @DisplayName("Пустое значение в поле Год")
     void doNotEnterAnythingStringsCvc() {
         var homePage = new HomePage();
         var cardPaymentPage = homePage.cardPayment();
