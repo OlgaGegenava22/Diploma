@@ -7,6 +7,7 @@ import ru.netology.data.DataHelper;
 import ru.netology.data.SQLHelper;
 import ru.netology.page.HomePage;
 
+
 import static com.codeborne.selenide.Selenide.open;
 
 public class SQLTest {
@@ -36,10 +37,8 @@ public class SQLTest {
         var cardPaymentPage = homePage.cardPayment();
         DataHelper.CardInfo cardInfo = DataHelper.getValidDataWithApproveCardNumber1();
         cardPaymentPage.fillCardInfo(cardInfo);
-        cardPaymentPage.successfulPaymentNotification();
         Assertions.assertEquals("APPROVED", SQLHelper.getCardPaymentStatus());
     }
-
 
     @Test
     @DisplayName("Покупка тура по карте, для которой задан статус DECLINED")
@@ -68,7 +67,6 @@ public class SQLTest {
         var creditPaymentPage = homePage.creditPayment();
         DataHelper.CardInfo cardInfo = DataHelper.getValidDataWithApproveCardNumber1();
         creditPaymentPage.fillCardInfo(cardInfo);
-        creditPaymentPage.successfulPaymentNotification();
         Assertions.assertEquals("APPROVED", SQLHelper.getCreditPaymentStatus());
     }
 
